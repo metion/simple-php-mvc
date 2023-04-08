@@ -26,3 +26,16 @@ function view($viewName, $params = [])
     extract($params);
     return require_once(__DIR__ . "/views/$viewName.php");
 }
+
+function redirect(string $url, $fullUrl = false)
+{
+    $redirectUrl = $fullUrl ? $url : BASE_URL . '/' . $url;
+    header('Location:' . $redirectUrl);
+    exit();
+}
+
+
+function img($imageName)
+{
+    return BASE_URL . '/uploads/' . $imageName;
+}
