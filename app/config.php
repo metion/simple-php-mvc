@@ -1,0 +1,6 @@
+<?php
+const BASE_URL = 'http://localhost/mvc';
+const DB_HOST = 'localhost';
+const DB_NAME = 'apollo';
+const DB_USERNAME = 'root';
+const DB_PASSWORD = '';

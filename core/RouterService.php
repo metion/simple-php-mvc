@@ -14,13 +14,6 @@ class RouterService
     protected string $path;
     protected array $segments;
 
-    protected static function validateAction($action): void
-    {
-        if ((is_array($action) && count($action) != 2) || (!is_array($action) && !is_callable($action))) {
-            throw new \Exception("Action must be array with length 2 or callback function");
-        }
-    }
-
     public function parsePath(string $path): void
     {
         $path = str_replace('path=', '', strtolower($path));
@@ -49,12 +42,8 @@ class RouterService
         $this->parsePath($_SERVER['QUERY_STRING']);
     }
 
-    /**
-     * @throws \Exception
-     */
     protected static function addRoute($type, $path, array|callable $action): void
     {
-        self::validateAction($action);
         $regexPath = self::preparePathToRegex($path);
         $routeParams = [
             'action' => $action,
@@ -68,17 +57,11 @@ class RouterService
         }
     }
 
-    /**
-     * @throws \Exception
-     */
     public static function get(string $path, array|callable $action): void
     {
         self::addRoute(self::TYPE_GET, $path, $action);
     }
 
-    /**
-     * @throws \Exception
-     */
     public static function post(string $path, array|callable $action): void
     {
         self::addRoute(self::TYPE_POST, $path, $action);

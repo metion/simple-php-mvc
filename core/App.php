@@ -9,7 +9,7 @@ class App
     {
         require_once __DIR__ . "/../app/routes.php";
         require_once __DIR__ . "/../app/helper.php";
-        define('BASE_URL', 'http://localhost/mvc');
+        require_once __DIR__ . "/../app/config.php";
     }
 
     public function handleRequests(): void
