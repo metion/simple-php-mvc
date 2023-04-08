@@ -10,7 +10,6 @@ function getData($key)
     return $_GET[$key] ?? null;
 }
 
-
 function generateRandomString($length = 10): string
 {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -20,4 +19,10 @@ function generateRandomString($length = 10): string
         $randomString .= $characters[random_int(0, $charactersLength - 1)];
     }
     return $randomString;
+}
+
+function view($viewName, $params = [])
+{
+    extract($params);
+    return require_once(__DIR__ . "/views/$viewName.php");
 }

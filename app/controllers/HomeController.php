@@ -28,12 +28,12 @@ class HomeController extends Controller
     {
         $name = "Home page";
         $surname = 'Hajiyev';
-        return $this->view('home', compact('name', 'surname'));
+        return view('home', compact('name', 'surname'));
     }
 
     public function form()
     {
-        return $this->view('form');
+        return view('form');
     }
 
     public function acceptForm()
