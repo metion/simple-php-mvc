@@ -4,3 +4,5 @@ const DB_HOST = 'localhost';
 const DB_NAME = 'apollo';
 const DB_USERNAME = 'root';
 const DB_PASSWORD = '';
+
+const UPLOADS_PATH = __DIR__ . '/../uploads';

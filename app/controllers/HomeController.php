@@ -3,9 +3,16 @@
 namespace App\Controllers;
 
 use Core\Controller;
+use Core\FileService;
 
 class HomeController extends Controller
 {
+    protected FileService $fileService;
+
+    public function __construct()
+    {
+        $this->fileService = new FileService();
+    }
 
     public function home()
     {
@@ -16,6 +23,7 @@ class HomeController extends Controller
     {
         print_r($username);
     }
+
     public function index()
     {
         $name = "Home page";
@@ -30,8 +38,15 @@ class HomeController extends Controller
 
     public function acceptForm()
     {
-        $name = postData('name');
-        $surname = postData('surname');
-        return $this->view('home',compact('name','surname'));
+        $extensions = ['jpg', 'jpeg', 'png'];
+        echo "<pre>";
+        if (
+            $this->fileService->hasFile('image') &&
+            $this->fileService->validateType('image', $extensions) &&
+            $this->fileService->validateSize('image',163)
+        ) {
+            $fileName = $this->fileService->upload('image');
+            print_r($fileName);
+        }
     }
 }
